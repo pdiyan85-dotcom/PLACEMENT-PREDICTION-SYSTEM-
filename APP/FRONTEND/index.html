@@ -1,0 +1,2713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:,">
+    <title>PlacementAI | Student Placement Prediction</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🎓
+            </div>
+
+            <div class="brand-text">
+                <h2>PlacementAI</h2>
+                <span>Prediction System</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <button class="nav-item active" data-page="dashboard">
+
+                <span class="nav-icon">🏠</span>
+
+                <span>Dashboard</span>
+
+            </button>
+
+
+            <button class="nav-item" data-page="assessment">
+
+                <span class="nav-icon">📝</span>
+
+                <span>Assessment</span>
+
+            </button>
+
+
+            <button class="nav-item" data-page="resume">
+
+                <span class="nav-icon">📄</span>
+
+                <span>Resume Assessment</span>
+
+            </button>
+
+
+            <button class="nav-item" data-page="analysis">
+
+                <span class="nav-icon">📊</span>
+
+                <span>Student Analysis</span>
+
+            </button>
+
+
+            <button class="nav-item" data-page="history">
+
+                <span class="nav-icon">🕒</span>
+
+                <span>Prediction History</span>
+
+            </button>
+
+
+            <button class="nav-item" data-page="models">
+
+                <span class="nav-icon">🤖</span>
+
+                <span>Models Used</span>
+
+            </button>
+
+
+            <button class="nav-item" data-page="about">
+
+                <span class="nav-icon">ℹ️</span>
+
+                <span>About</span>
+
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button
+                class="nav-item delete-nav"
+                id="clearHistoryButton"
+                type="button"
+            >
+
+                <span class="nav-icon">🗑️</span>
+
+                <span>Delete History</span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <p class="topbar-small">
+                    Student Career Analytics
+                </p>
+
+                <h1 id="pageTitle">
+                    Dashboard
+                </h1>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="system-status">
+
+                    <span class="status-dot"></span>
+
+                    <span>
+                        System Online
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             DASHBOARD PAGE
+        ================================================== -->
+
+        <section
+            class="page active-page"
+            id="dashboardPage"
+        >
+
+
+            <!-- WELCOME -->
+
+            <div class="welcome-section">
+
+                <div class="welcome-content">
+
+                    <p class="eyebrow">
+                        WELCOME TO PLACEMENTAI
+                    </p>
+
+                    <h2>
+                        Student Placement Prediction Dashboard
+                    </h2>
+
+                    <p>
+                        Analyze student profiles, estimate placement
+                        probability and identify areas for improvement
+                        using machine learning.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-button dashboard-action"
+                    type="button"
+                    data-page="assessment"
+                >
+
+                    + New Assessment
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 STATISTICS
+            ================================================== -->
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        👨‍🎓
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>
+                            Total Assessments
+                        </span>
+
+                        <strong id="totalAssessments">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✅
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>
+                            Placed Predictions
+                        </span>
+
+                        <strong id="placedAssessments">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ⚠️
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>
+                            Not Placed Predictions
+                        </span>
+
+                        <strong id="notPlacedAssessments">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📈
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>
+                            Average Probability
+                        </span>
+
+                        <strong id="averageProbability">
+                            0%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DASHBOARD TWO COLUMN AREA
+            ================================================== -->
+
+            <div class="dashboard-grid">
+
+
+                <!-- RECENT ACTIVITY -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <p class="card-label">
+                                RECENT ACTIVITY
+                            </p>
+
+                            <h3>
+                                Recent Assessments
+                            </h3>
+
+                        </div>
+
+
+                        <button
+                            class="text-button"
+                            type="button"
+                            data-page="history"
+                        >
+                            View All
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="recentAssessments"
+                        class="recent-assessments"
+                    >
+
+                        <div class="empty-state">
+
+                            <div class="empty-icon">
+                                📋
+                            </div>
+
+                            <p>
+                                No assessments yet
+                            </p>
+
+                            <span>
+                                Your recent predictions will
+                                appear here.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CURRENT MODEL -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <p class="card-label">
+                                MACHINE LEARNING
+                            </p>
+
+                            <h3>
+                                Current Model
+                            </h3>
+
+                        </div>
+
+
+                        <span class="model-badge">
+                            Active
+                        </span>
+
+                    </div>
+
+
+                    <div class="model-summary">
+
+                        <div class="model-logo">
+                            ML
+                        </div>
+
+
+                        <div class="model-summary-content">
+
+                            <h3>
+                                Logistic Regression
+                            </h3>
+
+                            <p>
+                                Current model used by the placement
+                                prediction pipeline.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="model-metrics">
+
+
+                        <div class="model-metric">
+
+                            <span>
+                                Accuracy
+                            </span>
+
+                            <strong>
+                                57.06%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="model-metric">
+
+                            <span>
+                                ROC-AUC
+                            </span>
+
+                            <strong>
+                                58.46%
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <button
+                        class="secondary-button full-button"
+                        type="button"
+                        data-page="models"
+                    >
+
+                        View Model Details
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 QUICK ACTIONS
+            ================================================== -->
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="card-label">
+                        QUICK ACTIONS
+                    </p>
+
+                    <h2>
+                        Start an Assessment
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions">
+
+
+                <!-- MANUAL -->
+
+                <div
+                    class="quick-card"
+                    data-page="assessment"
+                >
+
+                    <div class="quick-icon">
+                        📝
+                    </div>
+
+                    <h3>
+                        Manual Assessment
+                    </h3>
+
+                    <p>
+                        Enter student information manually and
+                        generate a placement prediction.
+                    </p>
+
+                    <span>
+                        Start Assessment →
+                    </span>
+
+                </div>
+
+
+                <!-- RESUME -->
+
+                <div
+                    class="quick-card"
+                    data-page="resume"
+                >
+
+                    <div class="quick-icon">
+                        📄
+                    </div>
+
+                    <h3>
+                        Resume Assessment
+                    </h3>
+
+                    <p>
+                        Upload a student's resume and extract
+                        relevant profile information.
+                    </p>
+
+                    <span>
+                        Upload Resume →
+                    </span>
+
+                </div>
+
+
+                <!-- ANALYSIS -->
+
+                <div
+                    class="quick-card"
+                    data-page="analysis"
+                >
+
+                    <div class="quick-icon">
+                        📊
+                    </div>
+
+                    <h3>
+                        Student Analysis
+                    </h3>
+
+                    <p>
+                        Review academic performance, skills,
+                        experience and profile factors.
+                    </p>
+
+                    <span>
+                        View Analysis →
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             MANUAL ASSESSMENT PAGE
+        ====================================================== -->
+
+        <section
+            class="page"
+            id="assessmentPage"
+        >
+
+
+            <div class="page-intro">
+
+                <p class="eyebrow">
+                    MANUAL ASSESSMENT
+                </p>
+
+                <h2>
+                    Student Placement Assessment
+                </h2>
+
+                <p>
+                    Enter the student's information below to
+                    generate a placement prediction.
+                </p>
+
+            </div>
+
+
+            <section class="dashboard-card">
+
+
+                <form id="predictionForm">
+
+
+                    <!-- =========================================
+                         BASIC INFORMATION
+                    ========================================== -->
+
+                    <div class="form-section">
+
+
+                        <div class="form-section-heading">
+
+                            <span class="form-section-icon">
+                                👤
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Basic Information
+                                </h3>
+
+                                <p>
+                                    Student academic background
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="age">
+                                    Age
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="age"
+                                    min="15"
+                                    max="50"
+                                    value="22"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="gender">
+                                    Gender
+                                </label>
+
+                                <select
+                                    id="gender"
+                                    required
+                                >
+
+                                    <option value="Male">
+                                        Male
+                                    </option>
+
+                                    <option value="Female">
+                                        Female
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="cgpa">
+                                    CGPA
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="cgpa"
+                                    min="0"
+                                    max="10"
+                                    step="0.01"
+                                    value="8.5"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="branch">
+                                    Branch
+                                </label>
+
+                                <select
+                                    id="branch"
+                                    required
+                                >
+
+                                    <option value="CSE">
+                                        CSE
+                                    </option>
+
+                                    <option value="IT">
+                                        IT
+                                    </option>
+
+                                    <option value="ECE">
+                                        ECE
+                                    </option>
+
+                                    <option value="EEE">
+                                        EEE
+                                    </option>
+
+                                    <option value="Mechanical">
+                                        Mechanical
+                                    </option>
+
+                                    <option value="Civil">
+                                        Civil
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="college_tier">
+                                    College Tier
+                                </label>
+
+                                <select
+                                    id="college_tier"
+                                    required
+                                >
+
+                                    <option value="Tier 1">
+                                        Tier 1
+                                    </option>
+
+                                    <option value="Tier 2">
+                                        Tier 2
+                                    </option>
+
+                                    <option value="Tier 3">
+                                        Tier 3
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         ACADEMIC & EXPERIENCE
+                    ========================================== -->
+
+                    <div class="form-section">
+
+
+                        <div class="form-section-heading">
+
+                            <span class="form-section-icon">
+                                🎓
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Academic & Experience
+                                </h3>
+
+                                <p>
+                                    Education, internships and activities
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="internships_count">
+                                    Internships
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="internships_count"
+                                    min="0"
+                                    value="2"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="projects_count">
+                                    Projects
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="projects_count"
+                                    min="0"
+                                    value="3"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="certifications_count">
+                                    Certifications
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="certifications_count"
+                                    min="0"
+                                    value="2"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="hackathons_participated">
+                                    Hackathons
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="hackathons_participated"
+                                    min="0"
+                                    value="2"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="backlogs">
+                                    Backlogs
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="backlogs"
+                                    min="0"
+                                    value="0"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="attendance_percentage">
+                                    Attendance (%)
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="attendance_percentage"
+                                    min="0"
+                                    max="100"
+                                    step="0.01"
+                                    value="85"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         SKILLS
+                    ========================================== -->
+
+                    <div class="form-section">
+
+
+                        <div class="form-section-heading">
+
+                            <span class="form-section-icon">
+                                💻
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Skills & Assessment
+                                </h3>
+
+                                <p>
+                                    Technical and professional capabilities
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="coding_skill_score">
+                                    Coding Skill Score
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="coding_skill_score"
+                                    min="0"
+                                    max="100"
+                                    value="85"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="aptitude_score">
+                                    Aptitude Score
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="aptitude_score"
+                                    min="0"
+                                    max="100"
+                                    value="80"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="communication_skill_score">
+                                    Communication Score
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="communication_skill_score"
+                                    min="0"
+                                    max="100"
+                                    value="80"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="logical_reasoning_score">
+                                    Logical Reasoning Score
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="logical_reasoning_score"
+                                    min="0"
+                                    max="100"
+                                    value="82"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="mock_interview_score">
+                                    Mock Interview Score
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="mock_interview_score"
+                                    min="0"
+                                    max="100"
+                                    value="80"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         DIGITAL PROFILE
+                    ========================================== -->
+
+                    <div class="form-section">
+
+
+                        <div class="form-section-heading">
+
+                            <span class="form-section-icon">
+                                🌐
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Digital Profile
+                                </h3>
+
+                                <p>
+                                    Online presence and extracurricular profile
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="github_repos">
+                                    GitHub Repositories
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="github_repos"
+                                    min="0"
+                                    value="5"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="linkedin_connections">
+                                    LinkedIn Connections
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="linkedin_connections"
+                                    min="0"
+                                    value="300"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="extracurricular_score">
+                                    Extracurricular Score
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="extracurricular_score"
+                                    min="0"
+                                    max="100"
+                                    value="75"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="leadership_score">
+                                    Leadership Score
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="leadership_score"
+                                    min="0"
+                                    max="100"
+                                    value="70"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="volunteer_experience">
+                                    Volunteer Experience
+                                </label>
+
+                                <select
+                                    id="volunteer_experience"
+                                    required
+                                >
+
+                                    <option value="Yes">
+                                        Yes
+                                    </option>
+
+                                    <option value="No">
+                                        No
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!--
+                        IMPORTANT:
+
+                        Sleep Hours and Study Hours are intentionally
+                        removed from the visible frontend.
+
+                        The current trained model still contains these
+                        features. We will handle this model/backend
+                        compatibility in a later step.
+                    -->
+
+
+                    <!-- =========================================
+                         FORM ACTIONS
+                    ========================================== -->
+
+                    <div class="form-actions">
+
+
+                        <button
+                            type="reset"
+                            class="secondary-button"
+                            id="resetFormButton"
+                        >
+                            Reset Form
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                            id="predictButton"
+                        >
+                            🔮 Predict Placement
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- ===============================================
+                 LOADING
+            ================================================= -->
+
+            <div
+                id="loading"
+                class="loading hidden"
+            >
+
+                <div class="loader"></div>
+
+                <div>
+
+                    <strong>
+                        Analyzing Student Profile
+                    </strong>
+
+                    <p>
+                        Machine learning model is processing
+                        the information...
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===============================================
+                 RESULT
+            ================================================= -->
+
+            <section
+                id="result"
+                class="result-card hidden"
+            >
+
+
+                <div class="result-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            ASSESSMENT COMPLETE
+                        </p>
+
+                        <h2>
+                            Prediction Result
+                        </h2>
+
+                    </div>
+
+
+                    <span class="result-badge">
+                        ML Prediction
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="predictionStatus"
+                    class="prediction-status"
+                >
+                </div>
+
+
+                <div class="probability-container">
+
+
+                    <div class="probability-box">
+
+                        <span>
+                            Placed Probability
+                        </span>
+
+                        <strong id="placedProbability">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="probability-box">
+
+                        <span>
+                            Not Placed Probability
+                        </span>
+
+                        <strong id="notPlacedProbability">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RECOMMENDATIONS -->
+
+                <div class="recommendations">
+
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <p class="card-label">
+                                ACTION PLAN
+                            </p>
+
+                            <h3>
+                                Personalized Recommendations
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <ul id="recommendationsList">
+                    </ul>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="newPredictionButton"
+                >
+                    + Make Another Prediction
+                </button>
+
+            </section>
+
+        </section>
+
+
+        <!-- =====================================================
+             RESUME ASSESSMENT PAGE
+        ====================================================== -->
+
+        <section
+            class="page"
+            id="resumePage"
+        >
+
+
+            <div class="page-intro">
+
+                <p class="eyebrow">
+                    RESUME ASSESSMENT
+                </p>
+
+                <h2>
+                    Analyze Student Resume
+                </h2>
+
+                <p>
+                    Upload a student's resume to extract relevant
+                    information for placement assessment.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card resume-card">
+
+
+                <!-- UPLOAD AREA -->
+
+                <div
+                    class="resume-upload-area"
+                    id="resumeUploadArea"
+                >
+
+
+                    <div class="upload-icon">
+                        📄
+                    </div>
+
+
+                    <h3>
+                        Upload Student Resume
+                    </h3>
+
+
+                    <p>
+                        Drag and drop your resume here or
+                        select a file from your computer.
+                    </p>
+
+
+                    <p class="upload-format">
+                        Supported formats: PDF, DOCX
+                    </p>
+
+
+                    <input
+                        type="file"
+                        id="resumeFile"
+                        accept=".pdf,.docx"
+                        hidden
+                    >
+
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="browseResumeButton"
+                    >
+                        Choose Resume
+                    </button>
+
+
+                    <div
+                        id="selectedResume"
+                        class="selected-resume hidden"
+                    >
+                    </div>
+
+                </div>
+
+
+                <!-- PROCESS STEPS -->
+
+                <div class="resume-info">
+
+
+                    <div class="info-box">
+
+                        <span>
+                            1
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Upload
+                            </strong>
+
+                            <p>
+                                Upload the student's PDF or DOCX resume.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span>
+                            2
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Extract
+                            </strong>
+
+                            <p>
+                                Relevant information will be extracted
+                                from the resume.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span>
+                            3
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Assess
+                            </strong>
+
+                            <p>
+                                Available information will be prepared
+                                for placement prediction.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- WARNING -->
+
+                <div class="resume-warning">
+
+                    <strong>
+                        Important
+                    </strong>
+
+                    <p>
+                        A resume may not contain information such as
+                        attendance, aptitude scores, backlogs or interview
+                        scores. The system should not invent missing values.
+                        Missing information will be handled separately
+                        during the resume assessment process.
+                    </p>
+
+                </div>
+
+
+                <!-- ANALYZE BUTTON -->
+
+                <button
+                    type="button"
+                    class="primary-button full-button"
+                    id="analyzeResumeButton"
+                    disabled
+                >
+                    🔍 Analyze Resume
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             STUDENT ANALYSIS PAGE
+        ====================================================== -->
+
+        <section
+            class="page"
+            id="analysisPage"
+        >
+
+
+            <div class="page-intro">
+
+                <p class="eyebrow">
+                    STUDENT ANALYSIS
+                </p>
+
+                <h2>
+                    Student Profile Analysis
+                </h2>
+
+                <p>
+                    Review academic performance, technical skills,
+                    experience and digital profile.
+                </p>
+
+            </div>
+
+
+            <!-- ANALYSIS CARDS -->
+
+            <div class="analysis-grid">
+
+
+                <!-- ACADEMIC -->
+
+<div class="dashboard-card">
+
+    <div class="card-header">
+
+        <div>
+
+            <p class="card-label">
+                ACADEMIC PROFILE
+            </p>
+
+            <h3>
+                Student Profile
+            </h3>
+
+        </div>
+
+    </div>
+
+
+    <div class="analysis-metric">
+
+        <span>
+            Name
+        </span>
+
+        <strong id="analysisName">
+            --
+        </strong>
+
+    </div>
+
+
+    <div class="analysis-metric">
+
+        <span>
+            CGPA
+        </span>
+
+        <strong id="analysisCgpa">
+            --
+        </strong>
+
+    </div>
+
+
+    <div class="analysis-metric">
+
+        <span>
+            Attendance
+        </span>
+
+        <strong id="analysisAttendance">
+            --
+        </strong>
+
+    </div>
+
+
+    <div class="analysis-metric">
+
+        <span>
+            Backlogs
+        </span>
+
+        <strong id="analysisBacklogs">
+            --
+        </strong>
+
+    </div>
+
+</div>
+
+
+                <!-- TECHNICAL -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <p class="card-label">
+                                TECHNICAL PROFILE
+                            </p>
+
+                            <h3>
+                                Technical Skills
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="analysis-metric">
+
+                        <span>
+                            Coding Skill
+                        </span>
+
+                        <strong id="analysisCoding">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="analysis-metric">
+
+                        <span>
+                            Aptitude
+                        </span>
+
+                        <strong id="analysisAptitude">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="analysis-metric">
+
+                        <span>
+                            Logical Reasoning
+                        </span>
+
+                        <strong id="analysisLogical">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <!-- COMPLETE ASSESSMENT -->
+
+<div class="dashboard-card assessment-complete-card">
+
+    <div class="card-header">
+
+        <div>
+
+            <p class="card-label">
+                COMPLETE ASSESSMENT
+            </p>
+
+            <h3>
+                Provide Missing Information
+            </h3>
+
+            <p class="card-description">
+                Some information cannot be reliably extracted from a resume.
+                Please provide the remaining details for placement prediction.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="assessment-form-grid">
+
+
+        <!-- ATTENDANCE -->
+
+        <div class="form-group">
+
+            <label for="resumeAttendance">
+                Attendance Percentage
+            </label>
+
+            <input
+                type="number"
+                id="resumeAttendance"
+                min="0"
+                max="100"
+                step="0.1"
+                placeholder="Example: 85"
+            >
+
+        </div>
+
+
+        <!-- BACKLOGS -->
+
+        <div class="form-group">
+
+            <label for="resumeBacklogs">
+                Backlogs
+            </label>
+
+            <input
+                type="number"
+                id="resumeBacklogs"
+                min="0"
+                step="1"
+                placeholder="Example: 0"
+            >
+
+        </div>
+
+
+        <!-- CODING -->
+
+        <div class="form-group">
+
+            <label for="resumeCoding">
+                Coding Skill Score
+            </label>
+
+            <input
+                type="number"
+                id="resumeCoding"
+                min="0"
+                max="100"
+                step="1"
+                placeholder="0 - 100"
+            >
+
+        </div>
+
+
+        <!-- APTITUDE -->
+
+        <div class="form-group">
+
+            <label for="resumeAptitude">
+                Aptitude Score
+            </label>
+
+            <input
+                type="number"
+                id="resumeAptitude"
+                min="0"
+                max="100"
+                step="1"
+                placeholder="0 - 100"
+            >
+
+        </div>
+
+
+        <!-- COMMUNICATION -->
+
+        <div class="form-group">
+
+            <label for="resumeCommunication">
+                Communication Skill Score
+            </label>
+
+            <input
+                type="number"
+                id="resumeCommunication"
+                min="0"
+                max="100"
+                step="1"
+                placeholder="0 - 100"
+            >
+
+        </div>
+
+
+        <!-- LOGICAL REASONING -->
+
+        <div class="form-group">
+
+            <label for="resumeLogical">
+                Logical Reasoning Score
+            </label>
+
+            <input
+                type="number"
+                id="resumeLogical"
+                min="0"
+                max="100"
+                step="1"
+                placeholder="0 - 100"
+            >
+
+        </div>
+
+
+        <!-- MOCK INTERVIEW -->
+
+        <div class="form-group">
+
+            <label for="resumeMockInterview">
+                Mock Interview Score
+            </label>
+
+            <input
+                type="number"
+                id="resumeMockInterview"
+                min="0"
+                max="100"
+                step="1"
+                placeholder="0 - 100"
+            >
+
+        </div>
+
+
+        <!-- HACKATHONS -->
+
+        <div class="form-group">
+
+            <label for="resumeHackathons">
+                Hackathons Participated
+            </label>
+
+            <input
+                type="number"
+                id="resumeHackathons"
+                min="0"
+                step="1"
+                placeholder="Example: 2"
+            >
+
+        </div>
+
+
+    </div>
+
+
+    <!-- PREDICT BUTTON -->
+
+    <div class="assessment-action">
+
+        <button
+            type="button"
+            class="primary-button"
+            id="resumePredictButton"
+        >
+            Predict Placement
+        </button>
+
+    </div>
+
+
+    <!-- MESSAGE -->
+
+    <div
+        id="resumePredictionMessage"
+        class="prediction-message"
+        style="display: none;"
+    ></div>
+
+
+</div>
+
+                <!-- EXPERIENCE -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <p class="card-label">
+                                EXPERIENCE
+                            </p>
+
+                            <h3>
+                                Professional Profile
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="analysis-metric">
+
+                        <span>
+                            Internships
+                        </span>
+
+                        <strong id="analysisInternships">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="analysis-metric">
+
+                        <span>
+                            Projects
+                        </span>
+
+                        <strong id="analysisProjects">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="analysis-metric">
+
+                        <span>
+                            Certifications
+                        </span>
+
+                        <strong id="analysisCertifications">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+<!-- DIGITAL PROFILE -->
+
+<div class="dashboard-card">
+
+    <div class="card-header">
+
+        <div>
+
+            <p class="card-label">
+                DIGITAL PROFILE
+            </p>
+
+            <h3>
+                Digital Presence
+            </h3>
+
+        </div>
+
+    </div>
+
+
+    <div class="analysis-metric">
+
+        <span>
+            GitHub
+        </span>
+
+        <strong id="analysisGithub">
+            Not detected
+        </strong>
+
+    </div>
+
+
+    <div class="analysis-metric">
+
+        <span>
+            LinkedIn
+        </span>
+
+        <strong id="analysisLinkedin">
+            Not detected
+        </strong>
+
+    </div>
+
+
+    <div class="analysis-metric">
+
+        <span>
+            Portfolio
+        </span>
+
+        <strong id="analysisPortfolio">
+            Not detected
+        </strong>
+
+    </div>
+
+
+    <div class="analysis-metric">
+
+        <span>
+            Hackathons
+        </span>
+
+        <strong id="analysisHackathons">
+            --
+        </strong>
+
+    </div>
+
+</div>
+
+
+            <!-- PROFILE INSIGHTS -->
+
+            <div class="dashboard-card">
+
+
+                <div class="card-header">
+
+                    <div>
+
+                        <p class="card-label">
+                            PROFILE INSIGHTS
+                        </p>
+
+                        <h3>
+                            Strengths & Improvement Areas
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="insights-grid">
+
+
+                    <div class="insight-box strengths">
+
+                        <h4>
+                            ✓ Strengths
+                        </h4>
+
+
+                        <ul id="strengthsList">
+
+                            <li>
+                                Complete an assessment to
+                                see strengths.
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="insight-box improvements">
+
+                        <h4>
+                            ↗ Improvement Areas
+                        </h4>
+
+
+                        <ul id="improvementsList">
+
+                            <li>
+                                Complete an assessment to
+                                see improvement areas.
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             HISTORY PAGE
+        ====================================================== -->
+
+        <section
+            class="page"
+            id="historyPage"
+        >
+
+
+            <div class="page-intro">
+
+                <p class="eyebrow">
+                    ASSESSMENT HISTORY
+                </p>
+
+                <h2>
+                    Prediction History
+                </h2>
+
+                <p>
+                    Review previous student placement assessments.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+
+                <div class="card-header">
+
+                    <div>
+
+                        <p class="card-label">
+                            RECENT PREDICTIONS
+                        </p>
+
+                        <h3>
+                            Assessment Records
+                        </h3>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="danger-button"
+                        id="clearHistoryButtonMain"
+                    >
+                        🗑 Clear History
+                    </button>
+
+                </div>
+
+
+                <div class="table-container">
+
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    #
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Prediction
+                                </th>
+
+                                <th>
+                                    Probability
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="historyTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="5"
+                                    class="empty-table"
+                                >
+                                    No assessment history available.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             MODELS PAGE
+        ====================================================== -->
+
+        <section
+            class="page"
+            id="modelsPage"
+        >
+
+
+            <div class="page-intro">
+
+                <p class="eyebrow">
+                    MACHINE LEARNING
+                </p>
+
+                <h2>
+                    Models Used
+                </h2>
+
+                <p>
+                    Models evaluated during the placement prediction
+                    model selection process.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+
+                <div class="card-header">
+
+                    <div>
+
+                        <p class="card-label">
+                            MODEL COMPARISON
+                        </p>
+
+                        <h3>
+                            Evaluation Results
+                        </h3>
+
+                    </div>
+
+
+                    <span class="model-badge">
+                        Current: Logistic Regression
+                    </span>
+
+                </div>
+
+
+                <div class="table-container">
+
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Model
+                                </th>
+
+                                <th>
+                                    Accuracy
+                                </th>
+
+                                <th>
+                                    Precision
+                                </th>
+
+                                <th>
+                                    Recall
+                                </th>
+
+                                <th>
+                                    F1 Score
+                                </th>
+
+                                <th>
+                                    ROC-AUC
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+
+                            <tr class="selected-model">
+
+                                <td>
+                                    <strong>
+                                        Logistic Regression
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    57.06%
+                                </td>
+
+                                <td>
+                                    57.92%
+                                </td>
+
+                                <td>
+                                    77.34%
+                                </td>
+
+                                <td>
+                                    66.24%
+                                </td>
+
+                                <td>
+                                    <strong>
+                                        58.46%
+                                    </strong>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Decision Tree
+                                </td>
+
+                                <td>
+                                    51.72%
+                                </td>
+
+                                <td>
+                                    55.80%
+                                </td>
+
+                                <td>
+                                    54.59%
+                                </td>
+
+                                <td>
+                                    55.19%
+                                </td>
+
+                                <td>
+                                    51.44%
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Random Forest
+                                </td>
+
+                                <td>
+                                    55.68%
+                                </td>
+
+                                <td>
+                                    57.30%
+                                </td>
+
+                                <td>
+                                    73.15%
+                                </td>
+
+                                <td>
+                                    64.26%
+                                </td>
+
+                                <td>
+                                    56.68%
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Extra Trees
+                                </td>
+
+                                <td>
+                                    55.80%
+                                </td>
+
+                                <td>
+                                    57.17%
+                                </td>
+
+                                <td>
+                                    75.08%
+                                </td>
+
+                                <td>
+                                    64.92%
+                                </td>
+
+                                <td>
+                                    56.43%
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Gradient Boosting
+                                </td>
+
+                                <td>
+                                    56.82%
+                                </td>
+
+                                <td>
+                                    57.50%
+                                </td>
+
+                                <td>
+                                    79.38%
+                                </td>
+
+                                <td>
+                                    66.69%
+                                </td>
+
+                                <td>
+                                    58.17%
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Hist Gradient Boosting
+                                </td>
+
+                                <td>
+                                    56.81%
+                                </td>
+
+                                <td>
+                                    57.59%
+                                </td>
+
+                                <td>
+                                    78.49%
+                                </td>
+
+                                <td>
+                                    66.43%
+                                </td>
+
+                                <td>
+                                    57.77%
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- MODEL NOTE -->
+
+                <div class="model-note">
+
+                    <strong>
+                        Model Selection
+                    </strong>
+
+                    <p>
+                        Logistic Regression is currently used in the
+                        prediction pipeline because it achieved the
+                        highest ROC-AUC among the evaluated models on
+                        the current test dataset.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ABOUT PAGE
+        ====================================================== -->
+
+        <section
+            class="page"
+            id="aboutPage"
+        >
+
+
+            <div class="page-intro">
+
+                <p class="eyebrow">
+                    ABOUT THE PROJECT
+                </p>
+
+                <h2>
+                    PlacementAI
+                </h2>
+
+                <p>
+                    An end-to-end machine learning application for
+                    student placement assessment.
+                </p>
+
+            </div>
+
+
+            <div class="about-grid">
+
+
+                <!-- OBJECTIVE -->
+
+                <div class="dashboard-card">
+
+                    <div class="about-icon">
+                        🎯
+                    </div>
+
+                    <h3>
+                        Project Objective
+                    </h3>
+
+                    <p>
+                        The system analyzes student academic,
+                        technical, experience and profile information
+                        to generate an estimated placement prediction.
+                    </p>
+
+                </div>
+
+
+                <!-- TECHNOLOGY -->
+
+                <div class="dashboard-card">
+
+                    <div class="about-icon">
+                        ⚙️
+                    </div>
+
+                    <h3>
+                        Technology Stack
+                    </h3>
+
+
+                    <ul class="technology-list">
+
+                        <li>
+                            Python
+                        </li>
+
+                        <li>
+                            Pandas
+                        </li>
+
+                        <li>
+                            NumPy
+                        </li>
+
+                        <li>
+                            Scikit-learn
+                        </li>
+
+                        <li>
+                            FastAPI
+                        </li>
+
+                        <li>
+                            HTML / CSS / JavaScript
+                        </li>
+
+                        <li>
+                            Joblib
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- ML PIPELINE -->
+
+                <div class="dashboard-card">
+
+                    <div class="about-icon">
+                        🔬
+                    </div>
+
+                    <h3>
+                        ML Pipeline
+                    </h3>
+
+                    <p>
+                        Data preparation → feature engineering →
+                        preprocessing → model training → evaluation →
+                        FastAPI prediction API → frontend dashboard.
+                    </p>
+
+                </div>
+
+
+                <!-- RESPONSIBLE USE -->
+
+                <div class="dashboard-card">
+
+                    <div class="about-icon">
+                        ⚠️
+                    </div>
+
+                    <h3>
+                        Responsible Use
+                    </h3>
+
+                    <p>
+                        Predictions are estimates produced by the
+                        trained model and should not be treated as
+                        a guarantee of actual placement outcomes.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <footer class="dashboard-footer">
+
+            <p>
+                PlacementAI • Student Placement Prediction System
+            </p>
+
+            <p>
+                Machine Learning Project
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
